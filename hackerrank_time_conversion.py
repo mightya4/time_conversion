@@ -19,10 +19,13 @@ def timeConversion(s):
     curr_time = ''.join([i for i in s if not i.isalpha()])
     if time_constraint == "PM":
         #add 12 plus current time
-        if curr_time[0] != "1" and curr_time[1] != "2":
+        if curr_time[0] == "1" and curr_time[1] == "2":
+            pass
+        else:
             tmp_time = list(curr_time)
-            tmp_time[0] = str(1 + int(tmp_time[0]))
-            tmp_time[1] = str(2 + int(tmp_time[1]))
+            afternoon = 12
+            tmp_num = afternoon + int(tmp_time[0] + tmp_time[1])
+            tmp_time[0], tmp_time[1] = str(tmp_num)
             curr_time = "".join(tmp_time)
     else:
         #check if time is 12 am
@@ -33,9 +36,7 @@ def timeConversion(s):
             curr_time = "".join(tmp_time)
         else:
             pass
-    
         
-    print(f"{curr_time}")
     return curr_time
 
 if __name__ == '__main__':
